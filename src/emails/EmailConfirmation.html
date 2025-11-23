@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA--Compatible" content="ie=edge">
+    <title>Confirm Your Email - Eddy's Pizza & Subs</title>
+    <style>
+        /* Basic styles for email client compatibility */
+        body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+        table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+        img { -ms-interpolation-mode: bicubic; border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; }
+        table { border-collapse: collapse !important; }
+        body { height: 100% !important; margin: 0 !important; padding: 0 !important; width: 100% !important; font-family: Arial, sans-serif; }
+    </style>
+</head>
+<body style="background-color: #f4f4f4; margin: 0 !important; padding: 0 !important;">
+
+    <!-- Main wrapper table -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <!-- Logo/Header Section -->
+        <tr>
+            <td bgcolor="#030226" align="center">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                    <tr>
+                        <td align="center" valign="top" style="padding: 40px 10px 40px 10px;">
+                            <h1 style="font-size: 36px; font-weight: bold; color: #F28B0C; margin: 0; font-family: 'Arial Black', Gadget, sans-serif;">Eddy's Pizza & Subs</h1>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <!-- End Header Section -->
+
+        <!-- Main Content Section -->
+        <tr>
+            <td bgcolor="#f4f4f4" align="center" style="padding: 0 10px 0 10px;">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                    <!-- Confirmation Message -->
+                    <tr>
+                        <td bgcolor="#ffffff" align="center" style="padding: 40px 30px 20px 30px; border-radius: 4px 4px 0 0;">
+                            <h2 style="font-size: 28px; font-weight: bold; margin: 0; color: #333;">Welcome!</h2>
+                            <p style="color: #666666; font-size: 16px; line-height: 24px;">
+                                Thanks for signing up! Please click the button below to confirm your email address and activate your account.
+                            </p>
+                        </td>
+                    </tr>
+                    <!-- End Confirmation Message -->
+
+                    <!-- Confirmation Button -->
+                    <tr>
+                        <td bgcolor="#ffffff" align="left">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td bgcolor="#ffffff" align="center" style="padding: 20px 30px 60px 30px;">
+                                        <table border="0" cellspacing="0" cellpadding="0" class="button-td">
+                                            <tr>
+                                                <td align="center" style="border-radius: 3px;" bgcolor="#0396A6">
+                                                    <a href="{{ .ConfirmationURL }}" target="_blank" style="font-size: 18px; font-family: Arial, sans-serif; color: #ffffff; text-decoration: none; text-decoration: none; border-radius: 3px; padding: 15px 25px; border: 1px solid #0396A6; display: inline-block;" class="button-a">Confirm Email Address</a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- End Confirmation Button -->
+
+                    <!-- Fallback Link -->
+                     <tr>
+                        <td bgcolor="#ffffff" align="center" style="padding: 0 30px 40px 30px; border-radius: 0 0 4px 4px; color: #666666; font-family: Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 25px;">
+                           <p style="margin: 0;">If the button doesn't work, copy and paste this link into your browser:</p>
+                           <p style="margin: 10px 0 0 0;"><a href="{{ .ConfirmationURL }}" target="_blank" style="color: #D92323;">{{ .ConfirmationURL }}</a></p>
+                        </td>
+                    </tr>
+                    <!-- End Fallback Link -->
+                </table>
+            </td>
+        </tr>
+        <!-- End Main Content Section -->
+
+        <!-- Footer Section -->
+        <tr>
+            <td bgcolor="#f4f4f4" align="center" style="padding: 20px 0 30px 0;">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                    <tr>
+                        <td align="center" style="color: #666666; font-family: Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px;">
+                            <p style="margin: 0;"><strong>Eddy's Pizza & Subs</strong></p>
+                            <p style="margin: 5px 0;">114 W Locust St Waterville, WA 98858</p>
+                            <p style="margin: 5px 0;">Questions? Call us at <a href="tel:555-123-4567" style="color: #D92323; text-decoration: none;">(509) 888-0889</a></p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <!-- End Footer Section -->
+    </table>
+    <!-- End Main wrapper table -->
+
+</body>
+</html>
+
