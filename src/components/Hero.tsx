@@ -28,10 +28,10 @@ const Hero = () => {
     >
       <div className="absolute inset-0 bg-gradient-to-br from-gray-900/90 via-gray-800/85 to-gray-900/90"></div>
 
-      <div className="absolute inset-0 opacity-20">
-        <div className={`absolute top-1/4 left-1/4 w-64 h-64 bg-accent-mint rounded-full animate-pulse ${isiOS && isMobile ? 'blur-xl' : 'blur-2xl md:blur-3xl'}`}></div>
-        <div className={`absolute bottom-1/4 right-1/4 w-72 h-72 bg-accent-orange rounded-full animate-pulse delay-75 ${isiOS && isMobile ? 'blur-xl' : 'blur-2xl md:blur-3xl'}`}></div>
-        <div className={`absolute top-1/2 right-1/3 w-56 h-56 bg-accent-red rounded-full animate-pulse delay-150 ${isiOS && isMobile ? 'blur-xl' : 'blur-2xl md:blur-3xl'}`}></div>
+      <div className={`absolute inset-0 ${isiOS && isMobile ? 'opacity-10' : 'opacity-20'}`}>
+        <div className={`absolute top-1/4 left-1/4 w-64 h-64 bg-accent-mint rounded-full animate-pulse ${isiOS && isMobile ? 'blur-lg' : 'blur-2xl md:blur-3xl'}`}></div>
+        <div className={`absolute bottom-1/4 right-1/4 w-72 h-72 bg-accent-orange rounded-full animate-pulse delay-75 ${isiOS && isMobile ? 'blur-lg' : 'blur-2xl md:blur-3xl'}`}></div>
+        <div className={`absolute top-1/2 right-1/3 w-56 h-56 bg-accent-red rounded-full animate-pulse delay-150 ${isiOS && isMobile ? 'blur-lg' : 'blur-2xl md:blur-3xl'}`}></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -47,7 +47,7 @@ const Hero = () => {
                 style={{
                   fontFamily: "'Bebas Neue', 'Impact', sans-serif",
                   textShadow: isiOS && isMobile
-                    ? '0 0 8px rgba(255, 255, 255, 0.3), 0 0 15px rgba(255, 255, 255, 0.4), 0 4px 8px rgba(0, 0, 0, 0.8)'
+                    ? '0 2px 4px rgba(0, 0, 0, 0.9), 0 0 3px rgba(255, 255, 255, 0.2)'
                     : isMobile
                     ? '0 0 20px rgba(255, 255, 255, 0.4), 0 0 40px rgba(255, 255, 255, 0.5), 0 4px 8px rgba(0, 0, 0, 0.8)'
                     : '0 0 40px rgba(255, 255, 255, 0.5), 0 0 80px rgba(255, 255, 255, 0.6), 0 4px 8px rgba(0, 0, 0, 0.8)',
@@ -60,12 +60,12 @@ const Hero = () => {
                  style={{
                    fontFamily: "'Bebas Neue', 'Impact', sans-serif",
                    textShadow: isiOS && isMobile
-                     ? '0 0 12px rgba(255, 107, 53, 0.8), 0 0 25px rgba(255, 107, 53, 0.4), 0 0 35px rgba(255, 107, 53, 0.5)'
+                     ? '0 0 5px rgba(255, 107, 53, 0.6), 0 0 8px rgba(255, 107, 53, 0.3)'
                      : isMobile
                      ? '0 0 30px rgba(255, 107, 53, 1), 0 0 60px rgba(255, 107, 53, 0.5), 0 0 90px rgba(255, 107, 53, 0.6)'
                      : '0 0 60px rgba(255, 107, 53, 1), 0 0 120px rgba(255, 107, 53, 0.5), 0 0 180px rgba(255, 107, 53, 0.6)',
                    letterSpacing: '0.1em',
-                   WebkitTextStroke: isiOS && isMobile ? '0.5px rgba(255, 107, 53, 0.4)' : isMobile ? '1px rgba(255, 107, 53, 0.5)' : '2px rgba(255, 107, 53, 0.5)',
+                   WebkitTextStroke: isiOS && isMobile ? '0px transparent' : isMobile ? '1px rgba(255, 107, 53, 0.5)' : '2px rgba(255, 107, 53, 0.5)',
                    lineHeight: '0.9'
                  }}>
               BEST
@@ -81,12 +81,12 @@ const Hero = () => {
                 style={{
                   fontFamily: "'Bebas Neue', 'Impact', sans-serif",
                   textShadow: isiOS && isMobile
-                    ? '0 0 8px rgba(132, 255, 214, 0.8), 0 0 15px rgba(132, 255, 214, 0.4), 0 0 25px rgba(132, 255, 214, 0.5), 0 0 35px rgba(132, 255, 214, 0.3)'
+                    ? '0 2px 4px rgba(0, 0, 0, 0.9), 0 0 4px rgba(132, 255, 214, 0.4)'
                     : isMobile
                     ? '0 0 20px rgba(132, 255, 214, 1), 0 0 40px rgba(132, 255, 214, 0.5), 0 0 60px rgba(132, 255, 214, 0.6), 0 0 80px rgba(132, 255, 214, 0.4)'
                     : '0 0 40px rgba(132, 255, 214, 1), 0 0 80px rgba(132, 255, 214, 0.5), 0 0 120px rgba(132, 255, 214, 0.6), 0 0 160px rgba(132, 255, 214, 0.4)',
                   letterSpacing: '0.12em',
-                  WebkitTextStroke: isiOS && isMobile ? '0.5px rgba(132, 255, 214, 0.25)' : isMobile ? '1px rgba(132, 255, 214, 0.3)' : '2px rgba(132, 255, 214, 0.3)'
+                  WebkitTextStroke: isiOS && isMobile ? '0px transparent' : isMobile ? '1px rgba(132, 255, 214, 0.3)' : '2px rgba(132, 255, 214, 0.3)'
                 }}>
               One Bite & You're Family
             </h2>
@@ -96,7 +96,7 @@ const Hero = () => {
              style={{
                fontFamily: "'Oswald', sans-serif",
                textShadow: isiOS && isMobile
-                 ? '0 0 5px rgba(255, 255, 255, 0.4), 0 2px 4px rgba(0, 0, 0, 0.8)'
+                 ? '0 2px 4px rgba(0, 0, 0, 0.9), 0 0 2px rgba(255, 255, 255, 0.2)'
                  : isMobile
                  ? '0 0 10px rgba(255, 255, 255, 0.5), 0 2px 4px rgba(0, 0, 0, 0.8)'
                  : '0 0 20px rgba(255, 255, 255, 0.6), 0 2px 4px rgba(0, 0, 0, 0.8)',
