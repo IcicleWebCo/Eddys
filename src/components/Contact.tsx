@@ -160,7 +160,7 @@ const Contact = () => {
                 <div className="text-white/80 space-y-1">
                   <div className="flex">
                     <span className="flex-shrink-0">Open Daily</span>
-                    <span className="ml-2 text-right flex-grow">11:00 AM - 9:00 PM</span>
+                    <span className="ml-2 text-right flex-grow">4:00 PM - 9:00 PM</span>
                   </div>
                 </div>
               </div>
