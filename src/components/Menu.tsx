@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useMenuData } from '../hooks/useMenuData';
-import { Loader2, AlertCircle, Pizza, Sandwich, UtensilsCrossed, IceCream, Menu as MenuIcon, X } from 'lucide-react';
+import { Loader2, AlertCircle, Pizza, Sandwich, UtensilsCrossed, IceCream } from 'lucide-react';
 
 const categoryIcons: { [key: string]: any } = {
   pizza: Pizza,
@@ -30,18 +30,12 @@ const getCategoryIcon = (categoryName: string) => {
 const Menu = () => {
   const { categories, loading, error } = useMenuData();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const displayedCategory = selectedCategory
     ? categories.find(cat => cat.id === selectedCategory)
     : categories[0];
 
   const displayedItems = displayedCategory?.items || [];
-
-  const handleCategorySelect = (categoryId: string) => {
-    setSelectedCategory(categoryId);
-    setIsMobileMenuOpen(false);
-  };
 
   if (loading) {
     return (
@@ -79,71 +73,28 @@ const Menu = () => {
 
         {categories.length > 0 && (
           <>
-            <div className="mb-12 relative">
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="md:hidden flex items-center justify-between w-full bg-gray-800 text-white px-6 py-4 rounded-lg font-semibold"
-              >
-                <div className="flex items-center space-x-2">
-                  {displayedCategory && (
-                    <>
-                      {(() => {
-                        const Icon = getCategoryIcon(displayedCategory.name);
-                        return <Icon size={20} />;
-                      })()}
-                      <span>{displayedCategory.name}</span>
-                    </>
-                  )}
-                </div>
-                {isMobileMenuOpen ? <X size={24} /> : <MenuIcon size={24} />}
-              </button>
+            <div className="mb-12">
+              <div className="flex flex-wrap justify-center gap-2 md:gap-3 lg:gap-4">
+                {categories.map((category) => {
+                  const Icon = getCategoryIcon(category.name);
+                  const isActive = selectedCategory === category.id || (!selectedCategory && category.id === categories[0]?.id);
 
-              {isMobileMenuOpen && (
-                <div className="md:hidden absolute top-full left-0 right-0 mt-2 bg-gray-800 rounded-lg shadow-2xl z-50 overflow-hidden border border-gray-700">
-                  {categories.map((category) => {
-                    const Icon = getCategoryIcon(category.name);
-                    const isActive = selectedCategory === category.id || (!selectedCategory && category.id === categories[0]?.id);
-
-                    return (
-                      <button
-                        key={category.id}
-                        onClick={() => handleCategorySelect(category.id)}
-                        className={`w-full flex items-center space-x-3 px-6 py-4 font-semibold transition-colors border-b border-gray-700 last:border-b-0 ${
-                          isActive
-                            ? 'bg-accent-orange text-white'
-                            : 'text-gray-300 hover:bg-gray-700 hover:text-white'
-                        }`}
-                      >
-                        <Icon size={20} />
-                        <span>{category.name}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-              )}
-
-              <div className="hidden md:block">
-                <div className="flex space-x-3 lg:space-x-4 justify-center flex-wrap gap-3">
-                  {categories.map((category) => {
-                    const Icon = getCategoryIcon(category.name);
-                    const isActive = selectedCategory === category.id || (!selectedCategory && category.id === categories[0]?.id);
-
-                    return (
-                      <button
-                        key={category.id}
-                        onClick={() => setSelectedCategory(category.id)}
-                        className={`flex items-center space-x-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 whitespace-nowrap ${
-                          isActive
-                            ? 'bg-accent-orange text-white shadow-lg shadow-accent-orange/30 scale-105'
-                            : 'bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white hover:scale-105'
-                        }`}
-                      >
-                        <Icon size={20} />
-                        <span>{category.name}</span>
-                      </button>
-                    );
-                  })}
-                </div>
+                  return (
+                    <button
+                      key={category.id}
+                      onClick={() => setSelectedCategory(category.id)}
+                      className={`flex items-center space-x-1.5 md:space-x-2 px-3 py-2 md:px-6 md:py-3 rounded-full font-semibold transition-all duration-300 text-sm md:text-base whitespace-nowrap ${
+                        isActive
+                          ? 'bg-accent-orange text-white shadow-lg shadow-accent-orange/30 scale-105'
+                          : 'bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white hover:scale-105'
+                      }`}
+                    >
+                      <Icon size={16} className="md:hidden" />
+                      <Icon size={20} className="hidden md:block" />
+                      <span>{category.name}</span>
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
