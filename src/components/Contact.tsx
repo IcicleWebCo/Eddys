@@ -1,7 +1,8 @@
 import { MapPin, Phone, Mail, Clock, MessageSquare, X, Facebook, Instagram } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useCompanyProfile } from '../hooks/useCompanyProfile';
 import { supabase } from '../lib/supabase';
+import { BusinessHours, groupConsecutiveDays, convertToStructuredData } from '../utils/hoursUtils';
 
 const Contact = () => {
   const { profile, loading } = useCompanyProfile();
@@ -56,29 +57,79 @@ const Contact = () => {
     }
   };
 
-  const formatHours = (hours: any) => {
-    if (!hours) return null;
+  const getFormattedHours = () => {
+    if (!profile?.hours_of_operation) return null;
 
-    // Handle different possible formats
-    if (typeof hours === 'string') {
-      // Split by newlines and format each line
-      return hours.split('\n').map((line: string) => {
-        const colonIndex = line.indexOf(':');
-        if (colonIndex === -1) return line;
-        const before = line.substring(0, colonIndex + 1);
-        const after = line.substring(colonIndex + 1).trim();
-        return { before, after };
-      });
+    try {
+      const hours = Array.isArray(profile.hours_of_operation)
+        ? profile.hours_of_operation as BusinessHours[]
+        : null;
+
+      if (!hours) return null;
+
+      return groupConsecutiveDays(hours);
+    } catch (error) {
+      console.error('Error formatting hours:', error);
+      return null;
     }
-    if (typeof hours === 'object') {
-      // Convert object format to formatted array
-      return Object.entries(hours).map(([day, time]) => ({
-        before: `${day}:`,
-        after: time
-      }));
-    }
-    return null;
   };
+
+  const formattedHours = getFormattedHours();
+
+  useEffect(() => {
+    if (!profile || !profile.hours_of_operation) return;
+
+    const hours = Array.isArray(profile.hours_of_operation)
+      ? profile.hours_of_operation as BusinessHours[]
+      : null;
+
+    if (!hours) return;
+
+    const structuredData = {
+      '@context': 'https://schema.org',
+      '@type': 'Restaurant',
+      'name': "Eddy's Pizza and Subs",
+      'image': 'https://eddyspizzaandsubs.com/logo.jpg',
+      'address': {
+        '@type': 'PostalAddress',
+        'streetAddress': '114 W Locust St',
+        'addressLocality': 'Waterville',
+        'addressRegion': 'WA',
+        'postalCode': '98858',
+        'addressCountry': 'US'
+      },
+      'telephone': profile.phone_number || '(509) 888-0889',
+      'email': profile.email || 'info@eddyspizzaandsubs.com',
+      'servesCuisine': ['Pizza', 'Subs', 'Italian'],
+      'priceRange': '$$',
+      'openingHoursSpecification': convertToStructuredData(hours),
+      'url': 'https://eddyspizzaandsubs.com'
+    };
+
+    if (profile.facebook_url || profile.instagram_url || profile.tiktok_url) {
+      structuredData['sameAs'] = [
+        profile.facebook_url,
+        profile.instagram_url,
+        profile.tiktok_url
+      ].filter(Boolean);
+    }
+
+    let script = document.getElementById('restaurant-structured-data');
+    if (!script) {
+      script = document.createElement('script');
+      script.id = 'restaurant-structured-data';
+      script.type = 'application/ld+json';
+      document.head.appendChild(script);
+    }
+    script.textContent = JSON.stringify(structuredData);
+
+    return () => {
+      const scriptToRemove = document.getElementById('restaurant-structured-data');
+      if (scriptToRemove) {
+        scriptToRemove.remove();
+      }
+    };
+  }, [profile]);
 
   return (
     <section id="contact" className="min-h-screen bg-primary-dark py-20">
@@ -155,14 +206,27 @@ const Contact = () => {
               <div className="bg-accent-mint/10 rounded-full p-3 flex-shrink-0">
                 <Clock className="text-accent-mint" size={24} />
               </div>
-              <div>
-                <h4 className="text-lg font-semibold text-white">Hours</h4>
-                <div className="text-white/80 space-y-1">
-                  <div className="flex">
-                    <span className="flex-shrink-0">Open Daily</span>
-                    <span className="ml-2 text-right flex-grow">4:00 PM - 9:00 PM</span>
+              <div className="flex-1">
+                <h4 className="text-lg font-semibold text-white mb-2">Hours</h4>
+                {loading ? (
+                  <p className="text-white/80">Loading...</p>
+                ) : formattedHours && formattedHours.length > 0 ? (
+                  <div className="text-white/80 space-y-1">
+                    {formattedHours.map((group, index) => (
+                      <div key={index} className="flex justify-between gap-4">
+                        <span className="font-medium">{group.days}</span>
+                        <span className={group.is_closed ? 'text-white/60' : ''}>{group.hours}</span>
+                      </div>
+                    ))}
                   </div>
-                </div>
+                ) : (
+                  <div className="text-white/80 space-y-1">
+                    <div className="flex justify-between gap-4">
+                      <span className="font-medium">Open Daily</span>
+                      <span>4:00 PM - 9:00 PM</span>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
 

@@ -6,6 +6,7 @@ import { supabase } from '../lib/supabase';
 import { CategoryManager } from '../components/admin/CategoryManager';
 import { MenuItemManager } from '../components/admin/MenuItemManager';
 import { ItemOptionsManager } from '../components/admin/ItemOptionsManager';
+import { SettingsManager } from '../components/admin/SettingsManager';
 
 const Admin = () => {
   const { user, userRole } = useAuth();
@@ -332,10 +333,8 @@ const Admin = () => {
             {activeTab === 'settings' && (
               <div className="space-y-6">
                 <h2 className="text-xl font-semibold text-gray-800">Restaurant Settings</h2>
-                
-                <div className="bg-white rounded-lg shadow-sm border p-6">
-                  <p className="text-gray-600">Settings interface coming soon...</p>
-                </div>
+
+                <SettingsManager />
               </div>
             )}
           </div>
