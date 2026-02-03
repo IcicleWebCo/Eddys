@@ -238,6 +238,9 @@ const Contact = () => {
               <MessageSquare size={28} className="group-hover:rotate-12 transition-transform duration-300" />
               Send Us a Message
             </button>
+            <p>
+              Please Note: We do not accept food orders through this contact form. To place an order, please call us at (509) 888-0889
+            </p>
           </div>
 
           <div className="flex flex-col items-center justify-start space-y-8 w-full">
