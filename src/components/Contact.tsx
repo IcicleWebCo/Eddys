@@ -299,7 +299,7 @@ const Contact = () => {
           <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setIsModalOpen(false)}>
             <div className="bg-gray-900 rounded-2xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto border-2 border-accent-mint/30 shadow-2xl" onClick={(e) => e.stopPropagation()}>
               <div className="flex justify-between items-center mb-6">
-                <h3 className="text-2xl font-bold text-white">Send Us a Message.</h3>
+                <h3 className="text-2xl font-bold text-white">Send Us a Message</h3>
                 <button
                   onClick={() => setIsModalOpen(false)}
                   className="text-white/60 hover:text-white transition-colors p-2 hover:bg-white/10 rounded-full"
