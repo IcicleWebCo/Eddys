@@ -320,6 +320,15 @@ const Contact = () => {
                 </div>
               )}
 
+              <div className="mb-6 p-4 bg-accent-orange/10 border border-accent-orange/30 rounded-lg">
+                <p className="text-white/90 text-sm">
+                  <span className="font-semibold">Please Note:</span> We do not accept food orders through this contact form. To place an order, please call us at{' '}
+                  <a href="tel:5098880889" className="text-accent-mint hover:text-accent-orange transition-colors font-semibold">
+                    (509) 888-0889
+                  </a>
+                </p>
+              </div>
+
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
