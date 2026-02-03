@@ -139,7 +139,7 @@ const Contact = () => {
             Contact <span className="text-accent-mint">Us</span>
           </h2>
           <p className="text-xl text-white/80 max-w-2xl mx-auto">
-            Ready for some delicious pizza and subs? Swing by, give us a ring for pick-up, or even send a message. We're always happy to chat and get your order ready!
+            Ready for some delicious pizza and subs? Swing by or give us a ring for pick-up. We're always happy to chat and get your order ready!
           </p>
         </div>
 
